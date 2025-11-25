@@ -1,7 +1,31 @@
 use printers::common::base::printer::PrinterState;
 use serde::ser::SerializeStruct;
-use crate::ErrorData;
+use crate::WsResult;
+use WsResult::*;
 
+pub fn get_printers() -> WsResult<Vec<String>, ()> {
+  let list: Vec<String> = printers::get_printers()
+    .into_iter()
+    .map(|x| x.name.clone())
+    .collect();
+  Ok(list)
+}
+
+pub fn get_default_printer() -> WsResult<Printer, String> {
+  match printers::get_default_printer() {
+    Some(printer) => Ok(Printer(printer)),
+    None => Err("Default printer not found".into()),
+  }
+}
+
+pub fn get_printer(name: String) -> WsResult<Printer, String> {
+  match printers::get_printer_by_name(name.as_str()) {
+    Some(printer) => Ok(Printer(printer)),
+    None => Err("Printer not found".into()),
+  }
+}
+
+#[derive(Debug)]
 pub struct Printer(printers::common::base::printer::Printer);
 
 impl serde::Serialize for Printer {
@@ -24,26 +48,5 @@ impl serde::Serialize for Printer {
     state.serialize_field("isDefault", &self.0.is_default)?;
     state.serialize_field("state", printer_state)?;
     state.end()
-  }
-}
-
-pub fn get_printers() -> Vec<String> {
-  printers::get_printers()
-    .as_slice().iter()
-    .map(|x| x.name.clone())
-    .collect()
-}
-
-pub fn get_default_printer() -> Result<Printer, ErrorData> {
-  match printers::get_default_printer() {
-    Some(printer) => Ok(Printer(printer)),
-    None => Err(ErrorData{error: "Default printer not found".into()}),
-  }
-}
-
-pub fn get_printer(name: String) -> Result<Printer, ErrorData> {
-  match printers::get_printer_by_name(name.as_str()) {
-    Some(printer) => Ok(Printer(printer)),
-    None => Err(ErrorData{error: "Printer not found".into()}),
   }
 }
