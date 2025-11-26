@@ -1,5 +1,10 @@
 mod models;
-mod printers;
+mod utils;
 
 pub use models::Printer;
-pub use printers::*;
+pub use utils::{
+  get_printers,
+  get_printer,
+  get_default_printer,
+  print_raw,
+};

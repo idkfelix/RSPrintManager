@@ -7,6 +7,12 @@ pub enum WsResult<T, E> where
   Err(E),
 }
 
+impl WsResult<(), String> {
+  pub fn error(error: &str) -> WsResult::<(), String> {
+    WsResult::Err(String::from(error))
+  }
+}
+
 use WsResult::*;
 use serde::ser::SerializeMap;
 
