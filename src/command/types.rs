@@ -1,14 +1,9 @@
-#[derive(Debug, serde::Deserialize)]
-pub struct Command {
-  pub cmd: CommandType,
-  pub value: Option<String>,
-}
-
 #[derive(Debug, PartialEq)]
 pub enum CommandType {
   GetPrinters,
   GetDefaultPrinter,
   GetPrinter,
+  PrintRaw,
 }
 
 impl<'de> serde::Deserialize<'de> for CommandType {
@@ -20,6 +15,7 @@ impl<'de> serde::Deserialize<'de> for CommandType {
       "get_printers" => Ok(Self::GetPrinters),
       "get_default_printer" => Ok(Self::GetDefaultPrinter),
       "get_printer" => Ok(Self::GetPrinter),
+      "print_raw" => Ok(Self::PrintRaw),
       _ => Err(serde::de::Error::custom("Invalid Command")),
     }
   }
