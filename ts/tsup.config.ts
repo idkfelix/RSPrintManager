@@ -1,0 +1,8 @@
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+  entry: ['src/main.ts'],
+  format: ['cjs', 'esm'],
+  clean: true,
+  dts: true,
+});

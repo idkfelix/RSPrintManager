@@ -1,10 +1,8 @@
 [package]
 name = "rspm"
 version = "0.1.0"
-authors = ["Felix Coulthard"]
 edition = "2024"
-description = "RSPrintManager"
-readme = "README.md"
+authors = ["Felix Coulthard"]
 repository = "https://github.com/idkfelix/RSPrintManager"
 
 [[bin]]
