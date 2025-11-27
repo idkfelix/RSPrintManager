@@ -18,6 +18,5 @@ fn load_icon(path: &Path) -> Icon {
     let rgba = image.into_raw();
     (rgba, width, height)
   };
-  Icon::from_rgba(icon_rgba, icon_width, icon_height)
-    .expect("Failed to open icon")
+  Icon::from_rgba(icon_rgba, icon_width, icon_height).expect("Failed to open icon")
 }

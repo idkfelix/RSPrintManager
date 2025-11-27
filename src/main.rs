@@ -1,6 +1,8 @@
 use rspm::{ui::tray::init_tray, ws::handler::handle_connection};
-use rspm::config::{DEFAULT_PORT, DEFAULT_ADDRESS};
 use tokio::net::TcpListener;
+
+pub const DEFAULT_PORT: u16 = 3000;
+pub const DEFAULT_ADDRESS: &str = "127.0.0.1";
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {

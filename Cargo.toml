@@ -1,15 +1,22 @@
 [package]
 name = "rspm"
 version = "0.1.0"
+authors = ["Felix Coulthard"]
 edition = "2024"
+description = "RSPrintManager"
+readme = "README.md"
+repository = "https://github.com/idkfelix/RSPrintManager"
+
+[lints.rust]
+unsafe_code = "forbid"
 
 [dependencies]
 tokio = {version = "1.48.0", features = ["macros","rt-multi-thread"]}
-tokio-tungstenite = "*"
-printers = "2.2.1"
-futures-util = "0.3.31"
 serde = { version = "1.0.228", features = ["derive", "std"] }
+tokio-tungstenite = "0.28.0"
+futures-util = "0.3.31"
 serde_json = "1.0.145"
 tray-icon = "0.21.2"
+printers = "2.2.1"
 image = "0.25.9"
-async-trait = "0.1.89"
+ts-rs = "11.1.0"
