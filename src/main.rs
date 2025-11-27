@@ -1,5 +1,11 @@
-use rspm::{ui::tray::init_tray, ws::handler::handle_connection};
+pub mod api;
+pub mod printing;
+pub mod ui;
+pub mod ws;
+
 use tokio::net::TcpListener;
+use ui::tray::init_tray;
+use ws::handler::handle_connection;
 
 pub const DEFAULT_PORT: u16 = 3000;
 pub const DEFAULT_ADDRESS: &str = "127.0.0.1";

@@ -7,6 +7,10 @@ description = "RSPrintManager"
 readme = "README.md"
 repository = "https://github.com/idkfelix/RSPrintManager"
 
+[[bin]]
+name = "RSPrintManager"
+path = "src/main.rs"
+
 [lints.rust]
 unsafe_code = "forbid"
 
